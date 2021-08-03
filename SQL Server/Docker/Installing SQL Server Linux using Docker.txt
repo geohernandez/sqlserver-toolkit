@@ -23,3 +23,4 @@ this case, more reference in SQL 2019 Revealed book (page 214) and the following
 
 https://docs.microsoft.com/es-es/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash
 https://stackoverflow.com/questions/47984603/using-sql-server-management-studio-to-remote-connect-to-docker-container
+https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/
