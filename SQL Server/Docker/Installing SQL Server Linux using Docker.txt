@@ -1,0 +1,25 @@
+-- Open PowerShell as Administrator and execute the following command for creating a new container using last SQL Server image
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sql2019lw" -p 1433:1433 --name sql2019latest --hostname sql2019latest -d mcr.microsoft.com/mssql/rhel/server:2019-latest
+
+-- For connecting use the IP address (ipconfig) and the port, for instance
+
+IP (got if ipconfig):
+192.168.1.20,1433
+Other Options are:
+127.0.0.1,1433   --default IP for localhost
+localhost,1433   --default name for localhost
+
+SQL Server Authentication
+user:sa  password:Sql2019lw
+
+--For verifying that everythin is ok, before to testing into Azure Data Studio or SSMS execute in PowerShell the following command and you should
+--see the status (Up) of the previous Server 
+docker ps -a
+
+
+Note:localhost is a valid way of testing it if your container and client is in the same Server(machine) as
+this case, more reference in SQL 2019 Revealed book (page 214) and the following examples:
+
+https://docs.microsoft.com/es-es/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash
+https://stackoverflow.com/questions/47984603/using-sql-server-management-studio-to-remote-connect-to-docker-container
