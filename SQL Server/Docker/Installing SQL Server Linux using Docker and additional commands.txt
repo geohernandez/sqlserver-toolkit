@@ -1,0 +1,35 @@
+-- Creating the new SQL Container for doing the POC
+-- Open PowerShell as Administrator and execute the following command for creating a new container using last SQL Server image
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sql2019lw" -p 1433:1433 --name sql2019latest --hostname sql2019latest -d mcr.microsoft.com/mssql/rhel/server:2019-latest
+
+
+-- Creating a second container
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sql2019lw" -p 1431:1433 --name sql2019 --hostname sql2019 -d mcr.microsoft.com/mssql/rhel/server:2019-latest
+
+--Connect to SQL Server, opening two new connections and execute the first part of the instructions through the execution of DefiningTDE Source Server script, once that you have
+--enable the Certificate and generate the Backup proceed to copy to the host and finally to the target server
+--Note: Inside PowerShell or CMD, locate in especific directory where you can see the Certificate has been copied correctly.  In case that you want to use the same certificate for every instance, np,
+--you can setup the same master key and restore the first and original certificate which you are able to use through all the process in different Server or SQL Instance
+
+docker cp sql2019latest:/var/opt/mssql/data/MyServerCert.cer .
+docker cp sql2019latest:/var/opt/mssql/data/MyServerCert.pvk .
+docker cp sql2019latest:/var/opt/mssql/data/MyTestDB.bak .
+
+
+docker cp MyServerCert.cer sql2019:/var/opt/mssql/data/
+docker cp MyServerCert.pvk sql2019:/var/opt/mssql/data/
+docker cp MyTestDB.bak  sql2019:/var/opt/mssql/data/
+
+
+
+-- Here some useful and simple docker options for creating new folders or remove files
+docker exec -it sql2019 mkdir /var/opt/mssql/certificate_backup
+docker exec -it sql2019latest ls /var/opt/mssql/
+
+
+--Removing an existing container
+docker ps -a
+docker container stop container_id_get_previously
+docker container rm container_id_get_previously

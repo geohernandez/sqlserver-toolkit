@@ -1,0 +1,28 @@
+USE master;
+GO
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'NewCertificate2021!+';
+go
+CREATE CERTIFICATE MyServerCert WITH SUBJECT = 'My DEK Certificate';
+go
+USE MyInfo;
+GO
+CREATE DATABASE ENCRYPTION KEY
+WITH ALGORITHM = AES_128
+ENCRYPTION BY SERVER CERTIFICATE MyServerCert;
+GO
+ALTER DATABASE MyInfo
+SET ENCRYPTION ON;
+GO
+
+
+Use master;
+GO
+ 
+BACKUP SERVICE MASTER KEY 
+TO FILE = 'C:\DataFiles\MsSqlServer\SvcMasterKey.key'
+ENCRYPTION BY PASSWORD = 'pw1234!';
+
+
+https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15
+
+https://www.red-gate.com/simple-talk/databases/sql-server/t-sql-programming-sql-server/encrypting-sql-server-transparent-data-encryption-tde/
