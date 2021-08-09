@@ -10,6 +10,7 @@
 --  https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15
 --  https://www.sqlshack.com/restoring-transparent-data-encryption-tde-enabled-databases-on-a-different-server/
 --  https://www.sqlshack.com/how-to-monitor-and-manage-transparent-data-encryption-tde-in-sql-server/
+--  Generate strong password: https://passwordsgenerator.net/
 --===================================================================================================================================
 
 -- Creating a demo DB
