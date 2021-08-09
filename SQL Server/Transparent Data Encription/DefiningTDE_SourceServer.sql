@@ -7,7 +7,7 @@
 --  3. Create Database Encryption
 --  4. Set Encryption on target DB
 --  More info in the following links:
---  https://docs.microsoft.com/es-es/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15
+--  https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15
 --  https://www.sqlshack.com/restoring-transparent-data-encryption-tde-enabled-databases-on-a-different-server/
 --  https://www.sqlshack.com/how-to-monitor-and-manage-transparent-data-encryption-tde-in-sql-server/
 --===================================================================================================================================
@@ -40,6 +40,7 @@ WITH PRIVATE KEY
 GO
 
 --You can use the Algorithm property equal to ALGORITHM = AES_256 and need to put in use your target DB
+--It is mandatory to put in use the DB that you want to encrypt and define the Algorithm and Server Certificate
 USE MyTestDB;
 GO
 
